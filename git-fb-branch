@@ -1,0 +1,22 @@
+#!/bin/sh
+
+
+source "$(git --exec-path)/git-sh-setup"
+
+USAGE="BRANCH"
+
+function _branch_and_checkout(){
+    if [[ $# == 1 ]] && [ -n $1 ]; then
+        if [[ -n $(git rev-parse --verify --quiet fullbeaker/master) ]]; then
+            git fetch --all
+            git branch --no-track $1 fullbeaker/master
+            git checkout $1
+        else
+            die "fullbeaker/master does not exist, Please add remote."
+        fi
+    else
+        usage
+    fi
+}
+
+_branch_and_checkout $1
