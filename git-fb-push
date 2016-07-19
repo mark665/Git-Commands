@@ -1,0 +1,22 @@
+#!/bin/sh
+
+
+source "$(git --exec-path)/git-sh-setup"
+
+USAGE="REPO"
+
+function _branch_and_checkout(){
+    if [[ $# == 1 ]] && [ -n $1 ]; then
+        git fetch --all
+        if [[ -n $(git remote show -n $1) ]]; then
+            curr_branch=$(git rev-parse --abbrev-ref HEAD)
+            git push -u $1 $curr_branch
+        else
+            die "Target repo does not exist, Please add remote."
+        fi
+    else
+        usage
+    fi
+}
+
+_branch_and_checkout $1
