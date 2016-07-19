@@ -1,0 +1,18 @@
+This is a repository of helpful git custom commands.  They are targeted at a fork-and-pull workflow, some specifically for Full Beaker.
+
+
+git-fb-branch:
+
+Usage
+
+ git fb-branch BRANCHNAME
+
+This will create a new branch with BRANCHNAME, from fullbeaker/master, and check it out.  This might be somewhat distructive if you don't have your changes stashed or committed
+
+git-fb-push:
+
+Usage
+
+ git fb-push REMOTE
+ 
+This will push the current branch you are on to the targeted remote, creating a remote-tracking relationship.  This is intended to be used when you've completed work and are pushing a local branch upstream.
